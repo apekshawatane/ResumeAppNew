@@ -3,11 +3,16 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const cors = require("cors");
+const cookieParser = require('cookie-parser');
 
 
 //middleware
 app.use(bodyParser.json());
 app.use(cors());
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use("/uploads", express.static("uploads"));
 
 
 //database
@@ -23,8 +28,11 @@ app.get('/', (req, res) => {
 });
 
 //ROUTES
+// app.use('/applicantPost', require('./routes/applicantPost'));
 app.use('/applicant', require('./routes/applicant'));
 app.use("/testAPI", require('./routes/testAPI'));
+app.use("/manager", require('./routes/manager'));
+app.use("/position", require('./routes/position'));
 
 
 //PORT 

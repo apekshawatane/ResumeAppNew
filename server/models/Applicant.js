@@ -12,8 +12,23 @@ const Applicant = db.define('applicants', {
         type: Sequelize.STRING
     },
     position: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        // get: function() {
+        //     return JSON.parse(this.getDataValue('position'));
+        // }, 
+        // set: function(val) {
+        //     return this.setDataValue('position', JSON.stringify(val));
+    },
+    file: {
+        type: Sequelize.STRING,
     }
-});
+
+}
+,
+{
+    paranoid: true, 
+    timestamps: true
+    }
+);
 
 module.exports = Applicant;
